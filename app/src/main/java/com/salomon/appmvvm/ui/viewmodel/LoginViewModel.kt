@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.salomon.appmvvm.data.model.UserModel
 import com.salomon.appmvvm.data.model.response.LoginResponse
-import com.salomon.appmvvm.domain.PostLoginRequest
+import com.salomon.appmvvm.domain.PostLoginUseCase
 import kotlinx.coroutines.launch
 
 class LoginViewModel: ViewModel() {
@@ -15,11 +15,11 @@ class LoginViewModel: ViewModel() {
 
     // Feedback de carga
     val _isLoading = MutableLiveData<Boolean>()
-    val _message = MutableLiveData<String>()
+    val _message = MutableLiveData<String?>()
 
     val loginUseCase = PostLoginUseCase()
 
-    fun login(loginRequest: PostLoginRequest){
+    fun login(loginRequest: String, toString: String){
 
         viewModelScope.launch {
             _isLoading.postValue(true)
